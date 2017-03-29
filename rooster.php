@@ -36,12 +36,13 @@ window.onload =function() {
         echo "removeBlock = '$vak';";
         echo "removeBlock = removeBlock.split(',');";
     }
-    echo "ajax_function('site',site1);"
+    echo "ajax_function('site',site1+'%&%'+site2);"
     ?>
 };
 
     function main_page_handler(htmlCode){
-        mainpage =  $.parseHTML(htmlCode);
+        htmlCode = htmlCode.split('%&%&');
+        mainpage =  $.parseHTML(htmlCode[0]);
         x=0;
         do{
             if(mainpage[x]['tagName']=="LINK"){
@@ -72,7 +73,7 @@ window.onload =function() {
             if(les.length < y+1){whileVar = false}else{whileVar=true}
         }while(whileVar);
         $( "#mainpage" ).append(mainpage);
-        ajax_function('overlay',site2);
+        second_page_handler(htmlCode[1])
     }
 
     function second_page_handler(htmlCode){
@@ -91,7 +92,6 @@ window.onload =function() {
             success: function (x) {
                 x = x.split("%%");
                 if(x[0] == 'true') {
-                    second_page_handler(x[1]);
                 }else{
                     main_page_handler(x[1]);
                 }
@@ -99,7 +99,8 @@ window.onload =function() {
         })
     }
 
+
+
 </script>
-    </pre>
 </body>
 </html>
