@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<div class = 'center'>
+    <h1>Gecombineerd Rooster ITB4-1b</h1>
 <div id="container">
         <div id = 'Form'>
             <a>klas : ITB4-1b</a>
@@ -22,6 +24,18 @@
             <button id = 'switch'>Custom invoer</button>
         </div>
 </div>
+</div>
+<style>
+    input{
+        width:500px;
+    }
+    .center{
+        text-align: center;
+    }
+    h1{
+        margin-bottom: 50px;
+    }
+</style>
         <script>
             vakken = "Clusterles,Clusterlessen";
 
@@ -58,7 +72,6 @@
             function processer(link1,link2,vak){
                 compiled = link1+"%%"+link2+"%%"+vak;
                 compiled = compiled.replace(/&/g,"ENTEKEN");
-                console.log(compiled);
                 ajax_function("rooster",compiled);
             }
 
